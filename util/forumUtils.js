@@ -64,7 +64,7 @@ exports.getMostRecentPosts = function(viewingUser, categoryId, page, done) {
 							}, function(err) {
 								topic.posts = fullPosts;
 
-								topic.lastPostedAgo = fullPosts[fullPosts.length - 1].lastPostDate;
+								topic.lastPostedAgo = fullPosts[fullPosts.length - 1].postedAgo;
 								topic.startedAgo = fullPosts[0].postedAgo;
 
 								topic.user = user;
@@ -117,7 +117,7 @@ exports.getFullPost = function(viewUser, postId, done) {
 				var diffHours = Math.round((timeDiff % 86400000) / 3600000); // hours
 				
 				if(diffMinutes == 0 && diffHours == 0) {
-					postedAgo = ' seconds ago';
+					postedAgo = ' moments ago';
 				}
 				else if(diffMinutes < 60 && diffHours == 0) {
 					postedAgoNumber = diffMinutes;
@@ -132,8 +132,8 @@ exports.getFullPost = function(viewUser, postId, done) {
 					}
 				}
 
-				if(postedAgoNumber == 1) {
-					postedAgo.replace('s', '');
+				if(diffDays == 1 || (diffDays == 0 && diffHours == 1) || (diffDays == 0 && diffHours == 0 && diffMinutes == 1)) {
+					postedAgo = postedAgo.replace('s', '');
 				}
 
 				fullPost.postedAgo = postedAgo;
@@ -195,8 +195,8 @@ getFullPost = function(viewUser, postId, done) {
 					}
 				}
 
-				if(postedAgoNumber == 1) {
-					postedAgo.replace('s', '');
+				if(diffDays == 1 || (diffDays == 0 && diffHours == 1) || (diffDays == 0 && diffHours == 0 && diffMinutes == 1)) {
+					postedAgo = postedAgo.replace('s', '');
 				}
 
 				fullPost.postedAgo = postedAgo;
