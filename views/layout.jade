@@ -1,0 +1,100 @@
+doctype html
+html
+	head
+		title= title
+		link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css')
+
+		meta(name='viewport', content='width=device-width, initial-scale=1')
+		meta(name='description', content='MCWAR.US')
+		link(rel='stylesheet', href='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css')
+		script(src='http://code.jquery.com/jquery-1.11.1.js')
+		script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js')
+		link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Lato')
+		link(rel='stylesheet', href='/stylesheets/animate.css')
+		link(rel='stylesheet', href='/stylesheets/main.css')
+		link(rel='stylehseet', href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css")
+		script(src='/javascripts/search.js')
+		script(src='/javascripts/analytics.js')
+		script(src='/javascripts/ranktag.js')
+
+	body
+		nav.navbar.navbar-default.navbar-static-top(role="navigation")
+				.navbar-header
+					button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#navbar-collapse', aria-expanded='true', aria-controls='navbar')
+						span.sr-only Toggle navigation
+						span.icon-bar
+						span.icon-bar
+						span.icon-bar
+					a(href='/')
+						p#brand.navbar-brand MCWar.us
+
+				#navbar-collapse.collapse.navbar-collapse
+					.container
+						ul.nav.navbar-nav
+							li
+								a(href='/top')
+									i.fa.fa-users
+									| Leaderboards
+							li
+								a(href='http://store.mcwar.us/' target='_blank')
+									i.fa.fa-shopping-cart
+									| Store
+							li
+								a(href='/forums')
+									i.fa.fa-commenting
+									| Forums
+									span.label.beta-label(style='margin-left: 7px') BETA
+						.nav.navbar-nav.navbar-right(style='margin-left: 10px')
+							if(user)
+								li.dropdown
+									a(href='#' class='dropdown-toggle' data-toggle='dropdown' style='padding-top: 9px; padding-bottom: 9px;' aria-expanded='false')
+										img(src='https://crafatar.com/avatars/#{user.player.uuid}?size=32')
+										span.caret
+									ul.dropdown-menu(roll='menu')
+										li
+											a(href='/u/#{user.player.name}') #{user.player.name}
+										li.divider
+										li
+											a(href='/u/#{user.player.name}/edit') Change Password
+										li
+											a(href='/logout') Logout
+							else
+								li
+									a(href='/login') Login
+
+						form#search-player.navbar-form.navbar-right.search(role='search' onSubmit='return false')
+							.input-group
+								input#search-player-input.form-control.navbar-player-search(type='text' placeholder='Search Player')
+								div.input-group-btn
+									button(type='submit').btn.btn-default
+										i.glyphicon.glyphicon-search
+
+		#wrapper
+			block content
+
+		#footer(style='margin-top: 50px')
+			hr
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

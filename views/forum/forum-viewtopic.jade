@@ -1,0 +1,130 @@
+extends forum-layout
+
+block forum
+	script(type='text/javascript', src='/lib/marked.js')
+	script(type='text/javascript', src='/javascripts/renderpost.js')
+	.page-header(style='margin: 0px')
+		h3
+			a(href='/forums/topics/#{topic._id}') #{topic.title}
+			small(style='margin-left: 7px') by 
+				a(href='/u/#{topic.user.player.name}') #{topic.user.player.name}
+
+	.btn-group.pull-right(style='margin-top: 24px')
+		a.btn.btn-sm.btn-primary(href='/forums/topics/#{topic._id}/new') Reply
+		if(canDelete)
+			a.btn.btn-sm.btn-danger(data-method='post' href='/forums/topics/#{topic._id}/delete') Delete
+	div
+		.btn-group.pull-left
+			if(numberOfPages > 1)
+				ul.pagination
+					- var back = true, foward = true, start = page - 1, finish = page + 1
+
+					if(start <= 1)
+						- var back = false
+						- start = 1
+						- finish = start + 2
+					else if(start > 1 && start == totalPages)
+						- var foward = false
+						- start = page - 2
+						- finish = page
+					if(back)
+						li
+							a(href='/forums/topics/#{topic._id}?page=1' aria-label='First' aria-hidden='false') First
+					- console.log('start: ' + start);
+					- console.log('finish: ' + finish);
+					- for (var i = start; i <= finish; i++)
+						if(numberOfPages - i >= 0)
+							if(i == page)
+								li.active
+									a(href='/forums/topics/#{topic._id}?page=#{i}') #{i}
+							else
+								li
+									a(href='/forums/topics/#{topic._id}?page=#{i}') #{i}
+					if(foward && numberOfPages > 1)
+						li
+							a(href='/forums/topics/#{topic._id}?page=#{numberOfPages}' aria-label='Last' aria-hidden='false') Last
+
+	.clearfix
+	hr
+
+
+	.posts
+		- for (var i = startIndex; (i < topic.posts.length && i < startIndex + 20); i++)
+			- var post = posts[i];
+			.row
+				if(i != startIndex)
+					hr.post-divider
+
+				div(id='#{post._id}')
+				.pull-left(style='position: relative; width: 580px')
+					a.pull-left(href='/u/#{post.user.player.name}' style='position: relative; margin: 4px 5px 0 0')
+						img(src='https://crafatar.com/avatars/#{post.user.player.name}?size=32')
+						a(style='color: #08c; font-weight: bold; margin-right: 3px' href='/u/#{post.user.player.name}') #{post.user.player.name}
+						if(post.user.player.rank != 'regular')
+							- var rank = 'rank-' + post.user.player.rank.toLowerCase();
+							- console.log('rank: ' + post.user.player.rank.toLowerCase());
+							span.label.rank(class= rank) #{post.user.player.rank.toUpperCase()}
+
+						div
+							a.post-timestamp(style='color: #808080' data-container='body', data-placement='right', href='#', rel='tooltip', title='', data-original-title='#{post.date}')
+								small posted #{post.postedAgo}
+
+				.btn-group
+					if(user && user.player._id.toString() == post.user.toString())
+						a.btn.btn-xs.btn-primary(href='/forums/posts/#{post._id}/edit') Edit
+
+					if(user && user.player._id.toString() == post.user.toString() || (user && (user.player.rank.toLowerCase() == 'mod' || user.player.rank.toLowerCase() == 'admin')))
+						a.btn.btn-xs.btn-danger(data-method='post' href='/forums/posts/#{post._id}/delete') Delete
+			
+			.row.forum-post
+				.converted
+					p#post-content.post-content #{post.content}
+
+
+
+		//- ####################
+		//- end post content
+		//- ####################
+
+	.clearfix
+	hr
+
+	.btn-group.pull-right(style='margin-top: 24px; margin-bottom: 80px')
+		a.btn.btn-sm.btn-primary(href='/forums/topics/#{topic._id}/new') Reply
+		if(canDelete)
+			a.btn.btn-sm.btn-danger(data-method='post' href='/forums/topics/#{topic._id}/delete') Delete
+
+	div
+		.btn-group.pull-left
+			if(numberOfPages > 1)
+				ul.pagination
+					- var back = true, foward = true, start = page - 1, finish = page + 1
+
+					if(start <= 1)
+						- var back = false
+						- start = 1
+						- finish = start + 2
+					else if(start > 1 && start == totalPages)
+						- var foward = false
+						- start = page - 2
+						- finish = page
+					if(back)
+						li
+							a(href='/forums/topics/#{topic._id}?page=1' aria-label='First' aria-hidden='false') First
+					- console.log('start: ' + start);
+					- console.log('finish: ' + finish);
+					- for (var i = start; i <= finish; i++)
+						if(numberOfPages - i >= 0)
+							if(i == page)
+								li.active
+									a(href='/forums/topics/#{topic._id}?page=#{i}') #{i}
+							else
+								li
+									a(href='/forums/topics/#{topic._id}?page=#{i}') #{i}
+					if(foward && numberOfPages > 1)
+						li
+							a(href='/forums/topics/#{topic._id}?page=#{numberOfPages}' aria-label='Last' aria-hidden='false') Last
+
+									
+
+

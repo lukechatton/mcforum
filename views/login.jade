@@ -1,0 +1,30 @@
+extends layout
+
+block content
+	link(rel='stylesheet', href='/stylesheets/login.css')
+	.container
+		.row
+			.col-md-5
+				.well
+					form.form-signin(action='/login', method='POST')
+						h2.form-signin-heading Please sign in
+						label.sr-only(for='inputEmail')
+						input#inputEmail.form-control(name='username' type='text', placeholder='Minecraft Username (Caps Sensative)', required='', autofocus='')
+						label.sr-only(for='inputPassword') Password
+						input#inputPassword.form-control(name='password' type='password', placeholder='Password', required='')
+						button.btn.btn-lg.btn-primary.btn-block(type='submit') Sign in
+			.col-md-7
+				.well
+						h2.form-signin-heading Need an Account?
+						p.lead 
+							| Use the 
+							b /login 
+							| command on our Minecraft Server to create an account (only in hub).
+
+						hr
+
+						h2.form-signin-heading Forgot your Password?
+						p.lead 
+							| Type 
+							b /login reset 
+							| on our Minecraft Server to generate a new password (only in hub).

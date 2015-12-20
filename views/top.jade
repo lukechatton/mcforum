@@ -1,0 +1,106 @@
+extends layout
+
+block content
+	#top
+		span(style='font-size: 200%; margin-left: 20px') Warzone Leaderboards
+		hr
+		.col-md-4
+			.panel.panel-default
+				.panel-heading.text-center Top Kills
+				table.table.warzone-leaderboard
+					tbody
+						- for (var i = 0; i < topWarzoneKills.length; i++)
+							tr
+								-var mcuser = topWarzoneKills[i];
+								-var headUrl = "https://crafatar.com/avatars/" + mcuser.player.name + "?size=22";
+								td #{i + 1}.
+								td 
+									a(href='/u/#{mcuser.player.name}')
+										img(src="#{headUrl}").leaderboard-head
+										| #{mcuser.player.name}
+								td #{mcuser.warzone.kills} Kills
+		.col-md-4
+			.panel.panel-default
+				.panel-heading.text-center Top Matches
+				table.table.warzone-leaderboard
+					tbody
+						- for (var i = 0; i < topWarzoneMatches.length; i++)
+							tr
+								-var mcuser = topWarzoneMatches[i];
+								-var headUrl = "https://crafatar.com/avatars/" + mcuser.player.name + "?size=22";
+								td #{i + 1}.
+								td 
+									a(href='/u/#{mcuser.player.name}')
+										img(src="#{headUrl}").leaderboard-head
+										| #{mcuser.player.name}
+								td #{mcuser.warzone.matches} Matches
+		.col-md-4
+			.panel.panel-default
+				.panel-heading.text-center Top Deaths
+				table.table.warzone-leaderboard
+					tbody
+						- for (var i = 0; i < topWarzoneDeaths.length; i++)
+							tr
+								-var mcuser = topWarzoneDeaths[i];
+								-var headUrl = "https://crafatar.com/avatars/" + mcuser.player.name + "?size=22";
+								td #{i + 1}.
+								td 
+									a(href='/u/#{mcuser.player.name}')
+										img(src="#{headUrl}").leaderboard-head
+										| #{mcuser.player.name}
+								td #{mcuser.warzone.deaths} Deaths
+
+		hr
+
+		span(style='font-size: 200%; margin-left: 20px') Infected Leaderboards
+		hr
+		.col-md-4
+			.panel.panel-default
+				.panel-heading.text-center Top Kills
+				table.table.warzone-leaderboard
+					tbody
+						- for (var i = 0; i < topInfectedKills.length; i++)
+							tr
+								-var mcuser = topInfectedKills[i];
+								-var headUrl = "https://crafatar.com/avatars/" + mcuser.player.name + "?size=22";
+								td #{i + 1}.
+								td 
+									a(href='/u/#{mcuser.player.name}')
+										img(src="#{headUrl}").leaderboard-head
+										| #{mcuser.player.name}
+								td #{mcuser.infected.kills} Kills
+		.col-md-4
+			.panel.panel-default
+				.panel-heading.text-center Top Matches
+				table.table.warzone-leaderboard
+					tbody
+						- for (var i = 0; i < topInfectedMatches.length; i++)
+							tr
+								-var mcuser = topInfectedMatches[i];
+								-var headUrl = "https://crafatar.com/avatars/" + mcuser.player.name + "?size=22";
+								td #{i + 1}.
+								td 
+									a(href='/u/#{mcuser.player.name}')
+										img(src="#{headUrl}").leaderboard-head
+										| #{mcuser.player.name}
+								td #{mcuser.infected.matches} Matches
+		.col-md-4
+			.panel.panel-default
+				.panel-heading.text-center Top Deaths
+				table.table.warzone-leaderboard
+					tbody
+						- for (var i = 0; i < topInfectedDeaths.length; i++)
+							tr
+								-var mcuser = topInfectedDeaths[i];
+								-var headUrl = "https://crafatar.com/avatars/" + mcuser.player.name + "?size=22";
+								td #{i + 1}.
+								td 
+									a(href='/u/#{mcuser.player.name}')
+										img(src="#{headUrl}").leaderboard-head
+										| #{mcuser.player.name}
+								td #{mcuser.infected.deaths} Deaths
+
+
+
+
+

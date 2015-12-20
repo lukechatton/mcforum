@@ -1,0 +1,139 @@
+body {
+	font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+.navbar-default .navbar-nav>li>a {
+	color: #333;
+}
+
+#brand {
+	color: #000;
+	margin-bottom: 0px;
+}
+
+i {
+	padding-right: 5px;
+}
+
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+    background-color: #E7E7E7;
+}
+
+#search-player {
+	display: inline-block;
+}
+
+.input-group-btn {
+	width: auto;
+}
+
+.profile-table {
+	/*margin-right: 5%;*/
+}
+
+.panel>.table>tbody:first-child>tr:first-child th, .panel>.table>tbody:first-child>tr:first-child td {
+    border-top: 0;
+}
+
+.table.warzone-leaderboard {
+	font-size: 14px;
+}
+
+table.warzone-leaderboard td:nth-child(1) {
+	width:1px;
+	white-space:nowrap;
+}
+
+table.warzone-leaderboard td:nth-child(2) {
+	max-width:120px;
+	white-space:nowrap;
+	font-weight: 700;
+}
+
+table.warzone-leaderboard td:nth-child(3) {
+    text-align: right;
+}
+
+table.right-last-col td:last-child {
+    text-align: right;
+}
+
+.leaderboard-head {
+	margin-right: 4px;
+}
+
+#home-rows a {
+	color: inherit;
+}
+
+.panel-blue {
+	border-color: #337AB7;
+}
+
+.panel-blue .panel-heading {
+	background-color: #337AB7;
+	border-color : #337AB7;
+	color: #fff;
+	font-size: 110%;
+}
+
+#photo-board {
+	background-image: url('/images/bg2.png');
+	background-position: 0% 50%;
+	background-size: cover;
+	background-repeat: no-repeat;
+	height: 300px;
+}
+
+.beta-label {
+	background-color: #D50000;
+}
+
+/* Ranks */
+
+.rank {
+	padding: 3px 6px;
+	color: #000;
+	font-size: 12px;
+	font-weight: normal;
+	background-color: #e5e5e5;
+	margin-left: 5px;
+	text-decoration: none;
+}
+
+.rank-admin {
+	color: #fff;
+	background-color: #E53935;
+}
+
+.rank-mod {
+	color: #fff;
+	background-color: #198F55;
+}
+
+.rank-pro {
+	color: #fff;
+	background-color: #0288D1;
+}
+
+.rank-pro2 {
+	color: #fff;
+	background-color: #4CAF50;
+}
+
+.rank-pro3 {
+	color: #fff;
+	background-color: #FB8C00;
+}
+
+.rank-heart {
+	color: #fff;
+	background-color: #D50000;
+}
+
+.rank-twitch {
+	color: #fff;
+	background-color: #9C27B0;
+}
+
+

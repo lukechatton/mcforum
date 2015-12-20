@@ -1,0 +1,142 @@
+extends forum-layout
+
+block forum
+	.toolbar
+		if(category)
+			span(style='font-size: 32px; font-weight: bold; padding-right: 5px') #{category.name}
+		else
+			span(style='font-size: 32px; font-weight: bold; padding-right: 5px') What's New?
+		if(category && canCreateTopic)
+			span.pull-right
+				a.btn.btn-primary.btn-xs(style='margin-top: 17px' href='/forums/#{category._id}/new') Create Topic
+		hr
+
+	div
+		.btn-group.pull-left
+			if(numberOfPages > 1)
+				ul.pagination
+					- var back = true, foward = true, start = page - 1, finish = page + 1
+
+					if(start <= 1)
+						- back = false
+						- start = 1
+						- finish = start + 2
+					else if(start > 1 && start == numberOfPages)
+						- foward = false
+						- start = page - 2
+						- finish = page
+					if(back)
+						li
+							if(category)
+								a(href='/forums/topics/#{category._id}?page=1' aria-label='First' aria-hidden='false') First
+							else
+								a(href='/forums?page=1' aria-label='First' aria-hidden='false') First
+					- console.log('start: ' + start);
+					- console.log('finish: ' + finish);
+					- for (var i = start; i <= finish; i++)
+						if(numberOfPages - i >= 0)
+							if(i == page)
+								li.active
+									if(category)
+										a(href='/forums/#{category._id}?page=#{i}') #{i}
+									else
+										a(href='/forums?page=#{i}') #{i}
+							else
+								li
+									if(category)
+										a(href='/forums/#{category._id}?page=#{i}') #{i}
+									else
+										a(href='/forums?page=#{i}') #{i}
+
+					if(foward && numberOfPages > 1)
+						li
+							if(category)
+								a(href='/forums/#{category._id}?page=#{numberOfPages}' aria-label='Last' aria-hidden='false') Last
+							else
+								a(href='/forums?page=#{numberOfPages}' aria-label='Last' aria-hidden='false') Last
+
+	table.table.table-striped
+		thead
+			tr
+				th
+				th.byline Topic
+				th.lastest-post(width='230px') Latest
+				th(style='text-align: center') Posts
+				th(style='text-align: center') Views
+		tbody
+			- for (var i = 0; i < topics.length; i++)
+				tr.topic
+					-var topic = topics[i];
+					td 
+					td
+						div
+							a(href='/forums/topics/#{topic._id}') #{topic.title}
+						small.started-by
+							
+							a(href='/u/#{topic.user.player.name}' style='color: #08c; padding-right: 3px') #{topic.user.player.name}
+							span(data-container='body', data-placement='top', rel='tooltip', title='', data-original-title='November 28th, 2015 -  8:25 AM') #{topic.startedAgo}
+							small  in 
+							a(href='/forums/#{topic.category._id}')
+								small #{topic.category.name}
+
+					td
+						//- - var lastPostedUser = topic.posts[i].user
+						div(style='position: relative')
+							a.pull-left(style='position:relative; margin: 4px 5px 0 0;')
+								img.avatar(src='https://crafatar.com/avatars/#{topic.user.player.name}?size=32')
+							- var recentPosterColor = '#08c'; //todo: rank colors
+							a(href='/u/#{topic.user.player.name}' style='color: #{recentPosterColor}') #{topic.user.player.name}
+							if(topic.user.player.rank != 'regular')
+								- var rank = 'rank-' + topic.user.player.rank.toLowerCase();
+								span.label.rank(class= rank) #{topic.user.player.rank}
+							div
+								small
+									span(data-container='body', data-placement='top', rel='tooltip', title='', data-original-title='November 28th, 2015 -  8:25 AM', style='line-height: .75em') #{topic.lastPostedAgo}
+					td(style='text-align: center')
+						strong #{topic.posts.length}
+					td(style='text-align: center')
+						strong #{topic.views}
+
+	div
+		.btn-group.pull-left
+			if(numberOfPages > 1)
+				ul.pagination
+					- var back = true, foward = true, start = page - 1, finish = page + 1
+
+					if(start <= 1)
+						- back = false
+						- start = 1
+						- finish = start + 2
+					else if(start > 1 && start == totalPages)
+						- foward = false
+						- start = page - 2
+						- finish = page
+					if(back)
+						li
+							if(category)
+								a(href='/forums/topics/#{category._id}?page=1' aria-label='First' aria-hidden='false') First
+							else
+								a(href='/forums?page=1' aria-label='First' aria-hidden='false') First
+					- console.log('start: ' + start);
+					- console.log('finish: ' + finish);
+					- for (var i = start; i <= finish; i++)
+						if(numberOfPages - i >= 0)
+							if(i == page)
+								li.active
+									if(category)
+										a(href='/forums/#{category._id}?page=#{i}') #{i}
+									else
+										a(href='/forums?page=#{i}') #{i}
+							else
+								li
+									if(category)
+										a(href='/forums/#{category._id}?page=#{i}') #{i}
+									else
+										a(href='/forums?page=#{i}') #{i}
+
+					if(foward && numberOfPages > 1)
+						li
+							if(category)
+								a(href='/forums/#{category._id}?page=#{numberOfPages}' aria-label='Last' aria-hidden='false') Last
+							else
+								a(href='/forums?page=#{numberOfPages}' aria-label='Last' aria-hidden='false') Last

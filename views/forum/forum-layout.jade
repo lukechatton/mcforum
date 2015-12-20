@@ -1,0 +1,54 @@
+extends ../layout
+
+block content
+	link(rel='stylesheet', href='/stylesheets/forums.css')
+	//- link(rel='stylesheet', href='/stylesheets/simple-sidebar.css')
+	#wrapper.dfd
+			.col-sm-3.col-xs-18
+				.container-fluid
+					#sidebar-wrapper.sidebar(style='padding-bottom: 60px')
+						.dfd
+							h4(style='margin-top: 30px') Forums
+								span.label.beta-label(style='margin-left: 7px') BETA
+							ul.nav.nav-pills.nav-stacked
+								li(class= category ? undefined : 'active')
+									a(href='/forums') Whats New?
+
+							ul.nav.nav-pills.nav-stacked
+								li(class= (category && category._id == '5659d732a74d97da976b3c44') ? 'active' : undefined)
+									a(href='/forums/5659d732a74d97da976b3c44') Announcements
+							h4 Community
+							ul.nav.nav-pills.nav-stacked
+								li(class= (category && category._id == '5658df50c7e2a7dc8bc48466') ? 'active' : undefined)
+									a(href='/forums/5658df50c7e2a7dc8bc48466') General
+								li(class= (category && category._id == '565b3a0c77d41e09edf67197') ? 'active' : undefined)
+									a(href='/forums/565b3a0c77d41e09edf67197') Introduce Yourself
+								li(class= (category && category._id == '565b3a1f77d41e09edf67198') ? 'active' : undefined)
+									a(href='/forums/565b3a1f77d41e09edf67198') Skill & Strategy
+								li(class= (category && category._id == '5659d740a74d97da976b3c45') ? 'active' : undefined)
+									a(href='/forums/5659d740a74d97da976b3c45') Off Topic
+							h4 Games
+							ul.nav.nav-pills.nav-stacked
+								li(class= (category && category._id == '565b39ae77d41e09edf67193') ? 'active' : undefined)
+									a(href='/forums/565b39ae77d41e09edf67193') Warzone
+								li(class= (category && category._id == '565b39b377d41e09edf67194') ? 'active' : undefined)
+									a(href='/forums/565b39b377d41e09edf67194') Infected
+							h4 Map Making
+							ul.nav.nav-pills.nav-stacked
+								li(class= (category && category._id == '565b39f177d41e09edf67195') ? 'active' : undefined)
+									a(href='/forums/565b39f177d41e09edf67195') Map Discussion
+								li(class= (category && category._id == '565b39ff77d41e09edf67196') ? 'active' : undefined)
+									a(href='/forums/565b39ff77d41e09edf67196') Map Submissions
+							h4 Contact
+							ul.nav.nav-pills.nav-stacked
+								li(class= (category && category._id == '565b675677d41e09edf67199') ? 'active' : undefined)
+									a(href='/forums/565b675677d41e09edf67199') Staff Applications
+								li(class= (category && category._id == '565b676377d41e09edf6719a') ? 'active' : undefined)
+									a(href='/forums/565b676377d41e09edf6719a') Reports
+
+
+			
+			.col-sm-9.col-xs-18
+				#page-content-wrapper
+					.container-fluid
+						block forum

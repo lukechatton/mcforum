@@ -1,0 +1,24 @@
+extends layout
+
+block content
+	.container
+		.row
+			.col-sm-3.col-md-2
+				p.text-center
+					img(src='https://crafatar.com/renders/body/#{mcUser.player.uuid}')
+			.col-sm-8.col-md-9
+				div
+					span(style='font-size: 36px; margin-right: 10px') Profile Settings
+				hr
+
+				.col-md-5
+					.panel.panel-default
+						.panel-heading
+							h3.panel-title Set Password
+						.panel-body
+							- console.log('action= /u/' + mcUser.player.name + '/setpassword')
+							form.form-signin(action='/u/#{mcUser.player.name}/setpassword', method='POST')
+								label(for='inputPassword') New Password:
+								input#inputEmail.form-control(name='password' type='text', placeholder='', required='', autofocus='')
+								
+								button.btn.btn-lg.btn-primary.btn-block(style='margin-top: 20px' type='submit') Change Password

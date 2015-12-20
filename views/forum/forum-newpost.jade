@@ -1,0 +1,56 @@
+extends forum-layout
+
+block forum
+	script(src='https://cdn.jsdelivr.net/jquery.hotkeys/0.8b/jquery.hotkeys.min.js')
+	//- script(src='//cdn.tinymce.com/4/tinymce.min.js')
+	link(rel='stylesheet', href='/stylesheets/editor.css')
+	.page-header(style='margin: 0px')
+		h3
+			a(href='/forums/topics/#{topic._id}') #{topic.title}
+			small(style='margin-left: 5px') by 
+				a(href='/u/#{topic.user.player.name}') #{topic.user.player.name}
+	hr
+
+	a.btn.btn-danger.btn-small.pull-right(href='/forums/topics/#{topic._id}') Abort
+
+	.tabbable
+		ul.nav.nav-tabs
+			li.active
+				a(data-toggle='tab' href='#tab1') Your Post
+			li
+				a(data-toggle='tab' href='#tab2') Original Content
+		.tab-content
+			#tab1.tab-pane.active
+				h4 Editor
+
+				form(action='/forums/topics/#{topic._id}/new' method='POST')
+					textarea#editor(name='content' style='overflow:scroll; max-height:600px')
+					button.btn.btn-lg.btn-primary(type='submit') Post Topic
+				link(rel='stylesheet', href='//cdn.jsdelivr.net/simplemde/latest/simplemde.min.css')
+				script(src='//cdn.jsdelivr.net/simplemde/latest/simplemde.min.js')
+				script(src='/javascripts/editor.js')
+
+
+
+			#tab2.tab-pane
+				- var post = posts[0];
+					.row
+						hr.post-divider
+						div(id='#{post._id}')
+							.pull-left(style='position: relative; width: 580px')
+								a.pull-left(href='/u/#{post.user.player.name}' style='position: relative; margin: 4px 5px 0 0')
+									img(src='https://crafatar.com/avatars/#{post.user.player.name}?size=32')
+									a(style='color: #08c; font-weight: bold; margin-right: 3px' href='/u/#{post.user.player.name}') #{post.user.player.name}
+									if(post.user.player.rank != 'regular')
+										- var rank = 'rank-' + post.user.player.rank.toLowerCase();
+										- console.log('rank: ' + post.user.player.rank.toLowerCase());
+										span.label.rank(class= rank) #{post.user.player.rank.toUpperCase()}
+
+									div
+										a.post-timestamp(style='color: #808080' data-container='body', data-placement='right', href='#', rel='tooltip', title='', data-original-title='#{post.date}')
+											small posted #{post.postedAgo}
+										
+									//- todo: rank label
+					.row.forum-post
+						.converted.post-content
+							p #{post.content}

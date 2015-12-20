@@ -1,0 +1,10 @@
+extends ../layout
+
+block content
+	.container
+		.row
+			.col-md-2
+				.btn-group-verticle(roll='group' aria-label='...')
+					button.btn.btn-default(type='button') What's New?
+			.col-md-10
+				block content

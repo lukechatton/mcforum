@@ -1,0 +1,86 @@
+extends layout
+
+block content
+	.container
+		.row
+			.col-sm-3.col-md-2
+				p.text-center
+					img(src='https://crafatar.com/renders/body/#{mcUser.player.uuid}')
+			.col-sm-8.col-md-9
+				div
+					span(style='font-size: 36px; margin-right: 10px') #{mcUser.player.name}
+					if(mcUser.player.rank != 'regular')
+						- var rank = 'rank-' + mcUser.player.rank.toLowerCase();
+						- console.log('rank: ' + mcUser.player.rank.toLowerCase());
+						span.label.rank(class= rank, style='font-size: 16px') #{mcUser.player.rank.toUpperCase()}
+				div
+					span.text-muted Last seen on #{mcUser.last_online_formatted}
+				div
+					span.text-muted #{mcUser.player.name} first joined on #{mcUser.first_joined_formatted}
+
+				hr
+
+				.col-md-4
+					.panel.panel-default
+						.panel-heading.text-center Global
+						.profile-table
+							table.table.right-last-col
+								thead
+									tr
+										td Level
+										td #{mcUser.level}
+									tr
+										td Coins
+										td #{mcUser.player.coins}
+									tr
+										td Tickets
+										td #{mcUser.player.tickets}
+
+				.col-md-4
+					.panel.panel-default
+						.panel-heading.text-center Warzone
+						.profile-table
+							table.table.right-last-col
+								thead
+									tr
+										td Kills
+										- if(mcUser.infected)
+											td #{mcUser.warzone.kills}
+										- else
+											td 0
+									tr
+										td Deaths
+										- if(mcUser.infected)
+											td #{mcUser.warzone.deaths}
+										- else
+											td 0
+									tr
+										td Matches
+										- if(mcUser.infected)
+											td #{mcUser.warzone.matches}
+										- else
+											td 0
+				.col-md-4
+					.panel.panel-default
+						.panel-heading.text-center Infected
+						.profile-table
+							table.table.right-last-col
+								thead
+									tr
+										td Kills
+										- if(mcUser.infected)
+											td #{mcUser.infected.kills}
+										- else
+											td 0
+									tr
+										td Deaths
+										- if(mcUser.infected)
+											td #{mcUser.infected.deaths}
+										- else
+											td 0
+									tr
+										td Matches
+										- if(mcUser.infected)
+											td #{mcUser.infected.matches}
+										- else
+											td 0

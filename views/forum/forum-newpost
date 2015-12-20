@@ -1,0 +1,27 @@
+extends forum-layout
+
+block forum
+	.container
+		.row
+			.col-md-2
+				.btn-group-verticle(roll='group' aria-label='...')
+					button.btn.btn-default(type='button') What's New?
+			.col-md-10
+				table.table
+					thead
+						tr
+							th.byline Topic
+							th.lastest-post(width='180px') Latest
+							th(style='text-align: center') Posts
+					tbody
+						- for (var i = 0; i < topics.length; i++)
+							tr
+								-var topic = topics[i];
+								td
+									div
+										a(href='/forums/topics/#{topic._id}') #{topic.title}
+								td
+									div
+										a(href='/u/Luuke' style='color: #F20') Luuke
+								td(style='text-align: center')
+									strong #{topic.posts.length}

@@ -1,0 +1,166 @@
+extends oldLayout
+
+block content
+	#main
+		.container
+
+			nav.navbar.navbar-default
+					#navbar.navbar-collapse.collapse
+						ul.nav.navbar-nav
+							li
+								span#warzone_nav Warzone
+							//- li
+							//- 	span#punishments_nav Punishments
+						ul.nav.navbar-nav.navbar-right
+							li
+								a(href='http://store.mcwar.us/' target='_blank')#store_nav Store
+
+			#warzone
+				.data-display
+					table.data-table
+						thead
+							tr.data-row(height="54px")
+								th(width="24px" align="center") Ranking
+								th
+								th(width="160px") Username
+								th#kills_tab.selected(width="100px" align="center") Kills
+								th#deaths_tab(width="100px" align="center") Deaths
+								th#matches_tab(width="100px" align="center") Total Games
+								th#levels_tab(width="100px" align="center") Level
+								th#coins_tab(width="100px" align="center") Coins
+								th#tickets_tab(width="100px" align="center") Tickets
+						tbody#kills_data
+							- for (var i = 0; i < topWarzoneKills.length; i++)
+								tr.data-row
+									-var user = topWarzoneKills[i];
+									-var headUrl = "https://crafatar.com/avatars/" + user.player.name + "?size=22";
+									-var level = Math.round((user.player.xp / 100) + 1)
+										td #{i + 1}
+										td 
+											img(src="#{headUrl}")
+										td #{user.player.name}
+										td #{user.warzone.kills}
+										td #{user.warzone.deaths}
+										td #{user.warzone.matches}
+										td #{level}
+										td #{user.player.coins}
+										td #{user.player.tickets}
+						tbody#deaths_data
+							- for (var i = 0; i < topWarzoneDeaths.length; i++)
+								tr.data-row
+									-var user = topWarzoneDeaths[i];
+									-var headUrl = "https://crafatar.com/avatars/" + user.player.name + "?size=22";
+									-var level = Math.round((user.player.xp / 100) + 1)
+										td #{i + 1}
+										td 
+											img(src="#{headUrl}")
+										td #{user.player.name}
+										td #{user.warzone.kills}
+										td #{user.warzone.deaths}
+										td #{user.warzone.matches}
+										td #{level}
+										td #{user.player.coins}
+										td #{user.player.tickets}
+						tbody#matches_data
+							- for (var i = 0; i < topWarzoneMatches.length; i++)
+								tr.data-row
+									-var user = topWarzoneMatches[i];
+									-var headUrl = "https://crafatar.com/avatars/" + user.player.name + "?size=22";
+									-var level = Math.round((user.player.xp / 100) + 1)
+										td #{i + 1}
+										td 
+											img(src="#{headUrl}")
+										td #{user.player.name}
+										td #{user.warzone.kills}
+										td #{user.warzone.deaths}
+										td #{user.warzone.matches}
+										td #{level}
+										td #{user.player.coins}
+										td #{user.player.tickets}
+
+						tbody#levels_data
+							- for (var i = 0; i < topPlayerXP.length; i++)
+								tr.data-row
+									-var user = topPlayerXP[i];
+									-var headUrl = "https://crafatar.com/avatars/" + user.player.name + "?size=22";
+									-var level = Math.round((user.player.xp / 100) + 1)
+										td #{i + 1}
+										td 
+											img(src="#{headUrl}")
+										td #{user.player.name}
+										td #{user.warzone.kills}
+										td #{user.warzone.deaths}
+										td #{user.warzone.matches}
+										td #{level}
+										td #{user.player.coins}
+										td #{user.player.tickets}
+
+						tbody#coins_data
+							- for (var i = 0; i < topPlayerCoins.length; i++)
+								tr.data-row
+									-var user = topPlayerCoins[i];
+									-var headUrl = "https://crafatar.com/avatars/" + user.player.name + "?size=22";
+									-var level = Math.round((user.player.xp / 100) + 1)
+										td #{i + 1}
+										td 
+											img(src="#{headUrl}")
+										td #{user.player.name}
+										td #{user.warzone.kills}
+										td #{user.warzone.deaths}
+										td #{user.warzone.matches}
+										td #{level}
+										td #{user.player.coins}
+										td #{user.player.tickets}
+						tbody#tickets_data
+							- for (var i = 0; i < topPlayerTickets.length; i++)
+								tr.data-row
+									-var user = topPlayerTickets[i];
+									-var headUrl = "https://crafatar.com/avatars/" + user.player.name + "?size=22";
+									-var level = Math.round((user.player.xp / 100) + 1)
+										td #{i + 1}
+										td 
+											img(src="#{headUrl}")
+										td #{user.player.name}
+										td #{user.warzone.kills}
+										td #{user.warzone.deaths}
+										td #{user.warzone.matches}
+										td #{level}
+										td #{user.player.coins}
+										td #{user.player.tickets}
+
+			//- end warzone
+
+			//- ======================== //
+			
+			//- #punishments
+			//- 	.data-display
+			//- 		table.data-table
+			//- 			thead
+			//- 				tr.data-row(height="54px")
+			//- 					th(width="24px" align="center") Order
+			//- 					th(width="42px")
+			//- 					th(width="160px") Username
+			//- 					th(width="100px" align="center") Type
+			//- 					th(width="100px" align="center") Length
+			//- 					th(width="150px" align="center") Reason
+			//- 					th(width="100px" align="center") Expires
+			//- 					th(width="140px" align="center") Staff
+			//- 			tbody
+			//- 				- for (var i = 0; i < recentPunishments.length; i++)
+			//- 					tr.data-row
+			//- 						-var punish = recentPunishments[i];
+			//- 						-var headUrl = "https://crafatar.com/avatars/" + punish.uuid + "?size=22";
+			//- 							td #{i + 1}
+			//- 							td
+			//- 								img(src="#{headUrl}")
+			//- 							td #{punish.name}
+			//- 							td #{punish.type}
+			//- 							td #{punish.formatedTime}
+			//- 							td #{punish.reason}
+			//- 							td #{punish.issuedDate.toDateString()}
+			//- 							td #{punish.staff}
+
+
+
+
+
