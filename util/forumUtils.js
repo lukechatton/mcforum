@@ -85,7 +85,7 @@ exports.getMostRecentPosts = function(viewingUser, categoryId, page, done) {
 				}
 			}, function(err) {
 				Topic.count({}, function(err, count) {
-					var numberOfPages = Math.floor(count / 20) + 1;
+					var numberOfPages = Math.ceil(count / 20);
 					return done(list, numberOfPages);
 				})
 			})
